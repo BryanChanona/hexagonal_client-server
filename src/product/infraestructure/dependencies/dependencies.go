@@ -29,3 +29,7 @@ func GetCreateProductController () *controller.CreateProductController{
 	return controller.NewCreateProductController(caseCreateProduct)
 
 }
+func GetDeleteProduct ()*controller.DeleteProductController{
+	caseDeleteProduct := application.NewDeleteProduct(&mySQL)
+	return controller.NewDeleteProductController(caseDeleteProduct)
+}
