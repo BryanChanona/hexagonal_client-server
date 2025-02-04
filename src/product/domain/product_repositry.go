@@ -1,5 +1,5 @@
 package domain
 
-type Ibook interface {
+type Iproduct interface {
 	SaveProduct(book Product) (err error)
 }
