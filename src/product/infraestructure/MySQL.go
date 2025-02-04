@@ -57,3 +57,29 @@ func (mysql *MySQL) DeleteProduct(id int32) (error){
 
 
  }
+ func (mysql *MySQL) GetAll() ([]domain.Product, error) {
+	fmt.Println("Lista de productos")
+	data, err := mysql.db.Query("SELECT * FROM products")
+
+	if err != nil {
+		return nil, err
+	}
+	defer data.Close()
+
+	var products []domain.Product
+	// Itera sobre todas las filas devueltas por la consulta
+	for data.Next() {
+		var product domain.Product
+		err := data.Scan(&product.ID,&product.Name, &product.Quantity,&product.BarCode)
+		if err != nil {
+			return nil, err
+		}
+		products = append(products, product)
+
+	}
+	if err := data.Err(); err != nil {
+		return nil, err
+	}
+
+	return products, nil
+}

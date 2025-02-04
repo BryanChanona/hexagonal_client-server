@@ -33,3 +33,7 @@ func GetDeleteProduct ()*controller.DeleteProductController{
 	caseDeleteProduct := application.NewDeleteProduct(&mySQL)
 	return controller.NewDeleteProductController(caseDeleteProduct)
 }
+func GetCaseViewAllProducts () *controller.ViewAllProductsController {
+	caseViewAllProducts := application.NewViewAllProducts(&mySQL)
+	return controller.NewViewProductsController(caseViewAllProducts)
+}
